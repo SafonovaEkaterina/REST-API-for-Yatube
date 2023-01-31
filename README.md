@@ -22,7 +22,6 @@ REST API для проекта Yatube реализует взимодейств�
 ```
 python -m venv env
 source venv/Scripts/activate
-python -m pip install --upgrade pip
 ```
 
 - Установить зависимости из файла requirements.txt
@@ -32,6 +31,7 @@ pip install -r requirements.txt
 
 - Выполнить миграции
 ```
+python manage.py makemigrations
 python manage.py migrate
 ```
 
@@ -39,5 +39,30 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+
+### Примеры запросов и ответов API
+- Добавление публикации
+```
+POST /api/v1/posts
+```
+Ответ API:
+```
+{
+    "id": 1,
+    "author": "first_user",
+    "text": "test_text",
+    "pub_date": "2023-01-31T12:22:12.710136Z",
+    "group": 1
+}
+```
+- Получение всех публикаций
+```
+GET /api/v1/posts
+```
+- Удаление конкретной публикации по id. Доступно только автору публикации
+```
+DELETE /api/v1/posts/{id}/
+```
+
 ### Документация
 Документация доступна по адресу [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
